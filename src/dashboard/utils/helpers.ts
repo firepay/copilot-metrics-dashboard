@@ -77,10 +77,12 @@ export const getFeatures = () => {
   return features.response;
 }
 
-export const formatDate = (date: string) => {
-  return new Date(date).toLocaleDateString("en-US", {
-    month: "short",
-    day: "numeric",
+export const formatDate = (date: string, locale?: string) => {
+  const userLocale = locale || (typeof navigator !== "undefined" ? navigator.language : "en-GB");
+  return new Date(date).toLocaleDateString(userLocale, {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
   });
 };
 
